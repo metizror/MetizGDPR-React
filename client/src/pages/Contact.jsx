@@ -11,6 +11,7 @@ const Contact = () => {
             <ContactHeader />
             <ContactForm />
             <ContactFooter />
+
         </div>
     );
 };
