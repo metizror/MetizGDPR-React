@@ -1,23 +1,28 @@
-import React from 'react';
+import React, { useCallback } from 'react';
+import { ButtonGroup, Button, Box, InlineStack, Text } from '@shopify/polaris';
 
 const BillingCycleToggle = ({ billingCycle, setBillingCycle }) => {
+    const handleMonthly = useCallback(() => setBillingCycle('monthly'), [setBillingCycle]);
+    const handleYearly = useCallback(() => setBillingCycle('yearly'), [setBillingCycle]);
+
     return (
-        <div className="flex justify-center mt-2">
-            <div className="bg-white p-1 rounded-xl border border-gray-100 flex shadow-sm">
-                <button
-                    onClick={() => setBillingCycle('monthly')}
-                    className={`px-6 py-2 rounded-lg text-sm font-bold transition-all ${billingCycle === 'monthly' ? 'bg-gray-800 text-white' : 'text-gray-500 hover:text-gray-700'}`}
-                >
-                    Pay monthly
-                </button>
-                <button
-                    onClick={() => setBillingCycle('yearly')}
-                    className={`px-6 py-2 rounded-lg text-sm font-bold transition-all ${billingCycle === 'yearly' ? 'bg-gray-800 text-white' : 'text-gray-500 hover:text-gray-700'}`}
-                >
-                    Pay yearly <span className="text-[10px] opacity-80">(Save 2 months)</span>
-                </button>
-            </div>
-        </div>
+        <Box paddingBlock="400">
+            <InlineStack align="center">
+                <ButtonGroup variant="segmented">
+                    <Button pressed={billingCycle === 'monthly'} onClick={handleMonthly}>
+                        Pay monthly
+                    </Button>
+                    <Button pressed={billingCycle === 'yearly'} onClick={handleYearly}>
+                        <InlineStack gap="100" align="center">
+                            <span>Pay yearly</span>
+                            <Text tone="success" fontWeight="bold" variant="bodyXs">
+                                (Save 2 months)
+                            </Text>
+                        </InlineStack>
+                    </Button>
+                </ButtonGroup>
+            </InlineStack>
+        </Box>
     );
 };
 

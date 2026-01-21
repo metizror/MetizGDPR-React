@@ -1,74 +1,78 @@
-import React from 'react';
+import React, { useState, useCallback } from 'react';
+import { Grid, Card, BlockStack, Text, Form, Select, TextField, Button, Box, Link } from '@shopify/polaris';
 
 const ContactForm = () => {
+    const [selected, setSelected] = useState('general-support');
+    const [message, setMessage] = useState('');
+
+    const handleSelectChange = useCallback(
+        (value) => setSelected(value),
+        [],
+    );
+
+    const handleMessageChange = useCallback(
+        (value) => setMessage(value),
+        [],
+    );
+
+    const options = [
+        { label: 'General support', value: 'general-support' },
+        { label: 'Billing issue', value: 'billing' },
+        { label: 'Technical problem', value: 'technical' },
+        { label: 'Feedback', value: 'feedback' },
+    ];
+
     return (
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start mt-4">
-            {/* Left side: Information */}
-            <div className="flex flex-col gap-4">
-                <h2 className="text-xl font-bold text-gray-900">Assistance/Feedback</h2>
-                <div className="text-[15px] text-gray-600 leading-relaxed space-y-4">
-                    <p>
-                        Use the contact form on the right to provide us with your valuable feedback or ask any question you might have regarding the app. We appreciate the time you spent doing that and will try to get back to you the soonest we can.
-                    </p>
-                    <p>
-                        If you want to email us directly instead, feel free to do so at{' '}
-                        <a href="mailto:support@pandectes.io" className="text-blue-600 hover:underline">
-                            support@pandectes.io
-                        </a>.
-                    </p>
-                </div>
-            </div>
+        <Grid>
+            <Grid.Cell columnSpan={{ xs: 6, sm: 6, md: 3, lg: 6 }}>
+                <BlockStack gap="400">
+                    <Text variant="headingLg" as="h2">Assistance/Feedback</Text>
+                    <BlockStack gap="300">
+                        <Text variant="bodyMd" tone="subdued">
+                            Use the contact form on the right to provide us with your valuable feedback or ask any question you might have regarding the app. We appreciate the time you spent doing that and will try to get back to you the soonest we can.
+                        </Text>
+                        <Text variant="bodyMd" tone="subdued">
+                            If you want to email us directly instead, feel free to do so at{' '}
+                            <Link url="mailto:support@pandectes.io">
+                                support@pandectes.io
+                            </Link>.
+                        </Text>
+                    </BlockStack>
+                </BlockStack>
+            </Grid.Cell>
 
-            {/* Right side: Form Card */}
-            <div className="bg-white border border-gray-100 rounded-2xl p-8 shadow-sm">
-                <form className="flex flex-col gap-6">
-                    <div className="flex flex-col gap-2">
-                        <label htmlFor="subject" className="text-sm font-medium text-gray-700">
-                            Subject
-                        </label>
-                        <div className="relative">
-                            <select
-                                id="subject"
-                                className="w-full h-11 px-4 bg-white border border-gray-300 rounded-lg text-sm appearance-none focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all cursor-pointer text-gray-900"
-                                defaultValue="general-support"
-                            >
-                                <option value="general-support">General support</option>
-                                <option value="billing">Billing issue</option>
-                                <option value="technical">Technical problem</option>
-                                <option value="feedback">Feedback</option>
-                            </select>
-                            <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-gray-400">
-                                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M2.5 4.5L6 8L9.5 4.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                                </svg>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="flex flex-col gap-2">
-                        <label htmlFor="message" className="text-sm font-medium text-gray-700">
-                            Message
-                        </label>
-                        <textarea
-                            id="message"
-                            rows="6"
-                            placeholder="Provide as much detail as possible about your issue so that we may better understand your case"
-                            className="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all resize-none placeholder:text-gray-400 text-gray-900"
-                        ></textarea>
-                    </div>
-
-                    <div className="flex justify-end pt-2">
-                        <button
-                            type="button"
-                            className="px-6 py-2 bg-[#d1d5db] text-white rounded-lg text-sm font-bold cursor-not-allowed"
-                            disabled
-                        >
-                            Submit
-                        </button>
-                    </div>
-                </form>
-            </div>
-        </div>
+            <Grid.Cell columnSpan={{ xs: 6, sm: 6, md: 3, lg: 6 }}>
+                <Card>
+                    <Form>
+                        <BlockStack gap="400">
+                            <Select
+                                label="Subject"
+                                options={options}
+                                onChange={handleSelectChange}
+                                value={selected}
+                            />
+                            <TextField
+                                label="Message"
+                                value={message}
+                                onChange={handleMessageChange}
+                                multiline={6}
+                                autoComplete="off"
+                                placeholder="Provide as much detail as possible about your issue so that we may better understand your case"
+                            />
+                            <Box paddingBlockStart="200">
+                                <Button
+                                    variant="primary"
+                                    disabled
+                                    onClick={() => { }}
+                                >
+                                    Submit
+                                </Button>
+                            </Box>
+                        </BlockStack>
+                    </Form>
+                </Card>
+            </Grid.Cell>
+        </Grid>
     );
 };
 

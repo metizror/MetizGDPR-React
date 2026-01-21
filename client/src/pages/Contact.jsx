@@ -1,18 +1,19 @@
 import React from 'react';
-import ContactHeader from '../components/contact/ContactHeader';
+import { Page, BlockStack } from '@shopify/polaris';
 import ContactForm from '../components/contact/ContactForm';
 import ContactFooter from '../components/contact/ContactFooter';
 
 const Contact = () => {
-    console.log("TEst");
-
     return (
-        <div className="flex flex-col p-6 max-w-[1200px] mx-auto bg-gray-50 min-h-screen font-sans">
-            <ContactHeader />
-            <ContactForm />
-            <ContactFooter />
-
-        </div>
+        <Page
+            title="Contact"
+            backAction={{ content: 'Dashboard', url: '/' }}
+        >
+            <BlockStack gap="500">
+                <ContactForm />
+                <ContactFooter />
+            </BlockStack>
+        </Page>
     );
 };
 

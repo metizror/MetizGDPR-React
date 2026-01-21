@@ -1,59 +1,80 @@
 import React from 'react';
-import { Check } from 'lucide-react';
+import { Grid, Card, BlockStack, InlineStack, Text, Button, Icon, Box, Badge, List } from '@shopify/polaris';
+import { CheckIcon } from '@shopify/polaris-icons';
 
 const PlansGrid = ({ plans, billingCycle }) => {
     return (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-6">
+        <Grid>
             {plans.map((plan, index) => (
-                <div
-                    key={index}
-                    className={`relative bg-white border rounded-2xl p-6 flex flex-col transition-all duration-300 ${plan.highlight ? 'border-green-300 ring-4 ring-green-100' : 'border-gray-200'}`}
-                >
-                    {plan.badge && (
-                        <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-green-200 text-green-700 text-[11px] font-bold px-4 py-1.5 rounded-lg shadow-sm whitespace-nowrap">
-                            {plan.badge}
-                        </div>
-                    )}
-
-                    <div className="flex flex-col h-full">
-                        <div className="h-full">
-                            <div className="mb-6">
-                                <h3 className="text-xl font-bold text-gray-900 mb-1">{plan.name}</h3>
-                                <p className="text-xs text-gray-500">{plan.tagline}</p>
+                <Grid.Cell key={index} columnSpan={{ xs: 6, sm: 3, md: 3, lg: 3 }}>
+                    <Box
+                        height="100%"
+                        borderStyle="solid"
+                        borderWidth="020"
+                        borderColor={plan.highlight ? 'border-brand' : 'border-secondary'}
+                        borderRadius="400"
+                        background="bg-surface"
+                        padding="500"
+                        position="relative"
+                    >
+                        {plan.badge && (
+                            <div style={{
+                                position: 'absolute',
+                                top: '-12px',
+                                left: '50%',
+                                transform: 'translateX(-50%)',
+                                zIndex: 10
+                            }}>
+                                <Badge tone="success">{plan.badge}</Badge>
                             </div>
+                        )}
 
-                            <div className="mb-6">
-                                <div className="flex items-baseline gap-1">
-                                    <span className="text-4xl font-bold text-gray-900">{plan.price}</span>
-                                    <span className="text-sm text-gray-500">{plan.priceDetail}</span>
-                                </div>
+                        <BlockStack gap="600" height="100%">
+                            <BlockStack gap="100">
+                                <Text variant="headingLg" as="h3">{plan.name}</Text>
+                                <Text variant="bodyXs" tone="subdued">{plan.tagline}</Text>
+                            </BlockStack>
+
+                            <BlockStack gap="200">
+                                <InlineStack align="baseline" gap="100">
+                                    <Text variant="heading2xl" as="p">{plan.price}</Text>
+                                    <Text variant="bodySm" tone="subdued">{plan.priceDetail}</Text>
+                                </InlineStack>
                                 {billingCycle === 'yearly' && plan.priceYearly && (
-                                    <p className="text-xs text-gray-500 mt-1">{plan.priceYearly}</p>
+                                    <Text variant="bodyXs" tone="subdued">{plan.priceYearly}</Text>
                                 )}
                                 {plan.trial && (
-                                    <span className="inline-block mt-2 bg-blue-50 text-blue-600 text-[10px] font-bold px-2 py-1 rounded border border-blue-100 uppercase tracking-tighter">
-                                        {plan.trial}
-                                    </span>
+                                    <InlineStack>
+                                        <Badge tone="attention">{plan.trial}</Badge>
+                                    </InlineStack>
                                 )}
-                            </div>
-                        </div>
+                            </BlockStack>
 
-                        <button className="w-full py-2.5 bg-gray-800 text-white rounded-lg text-sm font-bold hover:bg-gray-700 transition-colors mb-8">
-                            {plan.buttonText}
-                        </button>
-                    </div>
+                            <Button
+                                variant={plan.highlight ? 'primary' : 'secondary'}
+                                fullWidth
+                                onClick={() => { }}
+                            >
+                                {plan.buttonText}
+                            </Button>
 
-                    <ul className="flex flex-col gap-3 mt-auto border-t border-gray-100 pt-6">
-                        {plan.features.map((feature, fIndex) => (
-                            <li key={fIndex} className="flex items-start gap-2 text-xs text-gray-600">
-                                <Check size={14} className="text-gray-400 mt-0.5 shrink-0" />
-                                <span>{feature}</span>
-                            </li>
-                        ))}
-                    </ul>
-                </div>
+                            <Box borderBlockStartWidth="010" borderColor="border-secondary" paddingBlockStart="400">
+                                <BlockStack gap="300">
+                                    {plan.features.map((feature, fIndex) => (
+                                        <InlineStack key={fIndex} gap="200" align="start" wrap={false}>
+                                            <div style={{ width: '16px', height: '16px' }}>
+                                                <Icon source={CheckIcon} tone="subdued" />
+                                            </div>
+                                            <Text variant="bodySm" as="span">{feature}</Text>
+                                        </InlineStack>
+                                    ))}
+                                </BlockStack>
+                            </Box>
+                        </BlockStack>
+                    </Box>
+                </Grid.Cell>
             ))}
-        </div>
+        </Grid>
     );
 };
 

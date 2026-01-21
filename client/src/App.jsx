@@ -6,9 +6,18 @@ import Contact from './pages/Contact';
 import Settings from './pages/Settings';
 import './App.css';
 
+import { NavMenu } from '@shopify/app-bridge-react';
+
 function App() {
   return (
     <Router>
+      <NavMenu>
+        <a href="/" rel="home">Pandectes GDPR</a>
+        <a href="/settings">Settings</a>
+        <a href="/reports">Reports</a>
+        <a href="/plans">Plans</a>
+        <a href="/contact">Contact</a>
+      </NavMenu>
       <Routes>
         <Route path="/" element={<Dashboard />} />
         <Route path="/plans" element={<Plans />} />

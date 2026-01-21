@@ -1,0 +1,30 @@
+
+> client@0.0.0 build
+> vite build
+
+vite v7.3.1 building client environment for production...
+
+/client/src/index.css doesn't exist at build time, it will remain unchanged to be resolved at runtime
+transforming...
+✓ 1132 modules transformed.
+✗ Build failed in 1.67s
+error during build:
+src/components/plans/BillingCycleToggle.jsx (2:9): "SegmentedControl" is not exported by "node_modules/@shopify/polaris/build/esm/index.js", imported by "src/components/plans/BillingCycleToggle.jsx".
+file: /home/mspl-cpu-010/html/Meet/Metiz GDPR 1/client/src/components/plans/BillingCycleToggle.jsx:2:9
+
+1: import React, { useCallback } from 'react';
+2: import { SegmentedControl, InlineStack, Box } from '@shopify/polaris';
+            ^
+3: 
+4: const BillingCycleToggle = ({ billingCycle, setBillingCycle }) => {
+
+    at getRollupError (file:///home/mspl-cpu-010/html/Meet/Metiz%20GDPR%201/client/node_modules/rollup/dist/es/shared/parseAst.js:401:41)
+    at error (file:///home/mspl-cpu-010/html/Meet/Metiz%20GDPR%201/client/node_modules/rollup/dist/es/shared/parseAst.js:397:42)
+    at Module.error (file:///home/mspl-cpu-010/html/Meet/Metiz%20GDPR%201/client/node_modules/rollup/dist/es/shared/node-entry.js:17022:16)
+    at Module.traceVariable (file:///home/mspl-cpu-010/html/Meet/Metiz%20GDPR%201/client/node_modules/rollup/dist/es/shared/node-entry.js:17478:29)
+    at ModuleScope.findVariable (file:///home/mspl-cpu-010/html/Meet/Metiz%20GDPR%201/client/node_modules/rollup/dist/es/shared/node-entry.js:15141:39)
+    at ReturnValueScope.findVariable (file:///home/mspl-cpu-010/html/Meet/Metiz%20GDPR%201/client/node_modules/rollup/dist/es/shared/node-entry.js:5688:38)
+    at FunctionBodyScope.findVariable (file:///home/mspl-cpu-010/html/Meet/Metiz%20GDPR%201/client/node_modules/rollup/dist/es/shared/node-entry.js:5688:38)
+    at Identifier.bind (file:///home/mspl-cpu-010/html/Meet/Metiz%20GDPR%201/client/node_modules/rollup/dist/es/shared/node-entry.js:5462:40)
+    at CallExpression.bind (file:///home/mspl-cpu-010/html/Meet/Metiz%20GDPR%201/client/node_modules/rollup/dist/es/shared/node-entry.js:2825:28)
+    at CallExpression.bind (file:///home/mspl-cpu-010/html/Meet/Metiz%20GDPR%201/client/node_modules/rollup/dist/es/shared/node-entry.js:12172:15)

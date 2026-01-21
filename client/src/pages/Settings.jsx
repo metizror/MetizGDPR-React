@@ -1,15 +1,19 @@
 import React from 'react';
-import SettingsHeader from '../components/settings/SettingsHeader';
+import { Page, BlockStack } from '@shopify/polaris';
 import SettingsGrid from '../components/settings/SettingsGrid';
 import SettingsFooter from '../components/settings/SettingsFooter';
 
 const Settings = () => {
     return (
-        <div className="flex flex-col p-6 max-w-[1200px] mx-auto bg-gray-50 min-h-screen font-sans">
-            <SettingsHeader />
-            <SettingsGrid />
-            <SettingsFooter />
-        </div>
+        <Page
+            title="Settings"
+            backAction={{ content: 'Dashboard', url: '/' }}
+        >
+            <BlockStack gap="500">
+                <SettingsGrid />
+                <SettingsFooter />
+            </BlockStack>
+        </Page>
     );
 };
 

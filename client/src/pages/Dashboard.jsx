@@ -1,20 +1,37 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import DashboardHeader from '../components/dashboard/DashboardHeader';
+import { Page, Layout } from '@shopify/polaris';
+import { useNavigate } from 'react-router-dom';
 import ConsentsTracking from '../components/dashboard/ConsentsTracking';
 import CustomerDataRequest from '../components/dashboard/CustomerDataRequest';
 import GoogleConsentMode from '../components/dashboard/GoogleConsentMode';
 import SupportChannel from '../components/dashboard/SupportChannel';
 
 const Dashboard = () => {
+    const navigate = useNavigate();
+
     return (
-        <div className="flex flex-col gap-6 p-6 max-w-[1200px] mx-auto bg-gray-50 min-h-screen font-sans">
-            <DashboardHeader />
-            <ConsentsTracking />
-            <CustomerDataRequest />
-            <GoogleConsentMode />
-            <SupportChannel />
-        </div>
+        <Page
+            title="Dashboard"
+            primaryAction={{
+                content: 'View Plans',
+                onAction: () => navigate('/plans'),
+            }}
+        >
+            <Layout>
+                <Layout.Section>
+                    <ConsentsTracking />
+                </Layout.Section>
+                <Layout.Section>
+                    <CustomerDataRequest />
+                </Layout.Section>
+                <Layout.Section>
+                    <GoogleConsentMode />
+                </Layout.Section>
+                <Layout.Section>
+                    <SupportChannel />
+                </Layout.Section>
+            </Layout>
+        </Page>
     );
 };
 

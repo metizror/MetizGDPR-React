@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Page, Layout, BlockStack } from '@shopify/polaris';
 import PlansHeader from '../components/plans/PlansHeader';
 import CurrentPlanBanner from '../components/plans/CurrentPlanBanner';
 import BillingCycleToggle from '../components/plans/BillingCycleToggle';
@@ -86,15 +87,20 @@ const Plans = () => {
     ];
 
     return (
-        <div className="flex flex-col gap-6 p-6 max-w-[1200px] mx-auto bg-gray-50 min-h-screen font-sans">
-            <PlansHeader />
-            <CurrentPlanBanner planName="Basic" />
-            <BillingCycleToggle billingCycle={billingCycle} setBillingCycle={setBillingCycle} />
-            <PlansGrid plans={plans} billingCycle={billingCycle} />
-            <PlanComparisonTable />
-            <SupportAndFAQ />
-            <PlansFooter />
-        </div>
+        <Page
+            title="Plans"
+            backAction={{ content: 'Dashboard', url: '/' }}
+        >
+            <BlockStack gap="500">
+                <PlansHeader />
+                <CurrentPlanBanner planName="Basic" />
+                <BillingCycleToggle billingCycle={billingCycle} setBillingCycle={setBillingCycle} />
+                <PlansGrid plans={plans} billingCycle={billingCycle} />
+                <PlanComparisonTable />
+                <SupportAndFAQ />
+                <PlansFooter />
+            </BlockStack>
+        </Page>
     );
 };
 

@@ -1,56 +1,68 @@
-import { FileText, Mail, MessageSquare, PlayCircle } from "lucide-react"
+import React from "react";
+import { Card, Text, Grid, BlockStack, Button, Icon, Box } from "@shopify/polaris";
+import { ChatIcon, NoteIcon, PlayIcon, EmailIcon } from "@shopify/polaris-icons";
 
 const SupportChannel = () => {
     return (
-        <div className="bg-white border border-gray-200 rounded-xl p-6 shadow-sm">
-            <h2 className="text-base font-bold text-gray-900 mb-4">Support channels</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                <div className="border border-gray-100 rounded-lg p-5 bg-white flex flex-col h-full">
-                    <MessageSquare size={20} className="text-gray-400 mb-3" />
-                    <h4 className="text-sm font-bold text-gray-900 mb-1">Live chat</h4>
-                    <p className="text-xs text-gray-500 mb-4 leading-relaxed">
-                        Chat with us in real time for any question you may have.
-                    </p>
-                    <button className="text-blue-600 text-sm font-semibold hover:underline cursor-pointer mt-auto text-left">
-                        Open chat
-                    </button>
-                </div>
+        <Card>
+            <BlockStack gap="400">
+                <Text variant="headingMd" as="h2">Support channels</Text>
+                <Grid>
+                    <Grid.Cell columnSpan={{ xs: 6, sm: 3, md: 3, lg: 3 }}>
+                        <Box background="bg-surface-secondary" padding="400" borderRadius="200" height="100%">
+                            <BlockStack gap="200">
+                                <Icon source={ChatIcon} tone="subdued" />
+                                <Text variant="headingSm" as="h4">Live chat</Text>
+                                <Text variant="bodyXs" tone="subdued">
+                                    Chat with us in real time for any question you may have.
+                                </Text>
+                                <Button variant="tertiary" textAlign="left">Open chat</Button>
+                            </BlockStack>
+                        </Box>
+                    </Grid.Cell>
 
-                <div className="border border-gray-100 rounded-lg p-5 bg-white flex flex-col h-full">
-                    <FileText size={20} className="text-gray-400 mb-3" />
-                    <h4 className="text-sm font-bold text-gray-900 mb-1">Help center</h4>
-                    <p className="text-xs text-gray-500 mb-4 leading-relaxed">
-                        Find answers in our detailed manuals.
-                    </p>
-                    <button className="text-blue-600 text-sm font-semibold hover:underline cursor-pointer mt-auto text-left">
-                        Visit help center
-                    </button>
-                </div>
+                    <Grid.Cell columnSpan={{ xs: 6, sm: 3, md: 3, lg: 3 }}>
+                        <Box background="bg-surface-secondary" padding="400" borderRadius="200" height="100%">
+                            <BlockStack gap="200">
+                                <Icon source={NoteIcon} tone="subdued" />
+                                <Text variant="headingSm" as="h4">Help center</Text>
+                                <Text variant="bodyXs" tone="subdued">
+                                    Find answers in our detailed manuals.
+                                </Text>
+                                <Button variant="tertiary" textAlign="left">Visit help center</Button>
+                            </BlockStack>
+                        </Box>
+                    </Grid.Cell>
 
-                <div className="border border-gray-100 rounded-lg p-5 bg-white flex flex-col h-full">
-                    <PlayCircle size={20} className="text-gray-400 mb-3" />
-                    <h4 className="text-sm font-bold text-gray-900 mb-1">Video tutorial</h4>
-                    <p className="text-xs text-gray-500 mb-4 leading-relaxed">
-                        Master the app in minutes on our youtube channel.
-                    </p>
-                    <button className="text-blue-600 text-sm font-semibold hover:underline cursor-pointer mt-auto text-left">
-                        Watch tutorial
-                    </button>
-                </div>
+                    <Grid.Cell columnSpan={{ xs: 6, sm: 3, md: 3, lg: 3 }}>
+                        <Box background="bg-surface-secondary" padding="400" borderRadius="200" height="100%">
+                            <BlockStack gap="200">
+                                <Icon source={PlayIcon} tone="subdued" />
+                                <Text variant="headingSm" as="h4">Video tutorial</Text>
+                                <Text variant="bodyXs" tone="subdued">
+                                    Master the app in minutes on our youtube channel.
+                                </Text>
+                                <Button variant="tertiary" textAlign="left">Watch tutorial</Button>
+                            </BlockStack>
+                        </Box>
+                    </Grid.Cell>
 
-                <div className="border border-gray-100 rounded-lg p-5 bg-white flex flex-col h-full">
-                    <Mail size={20} className="text-gray-400 mb-3" />
-                    <h4 className="text-sm font-bold text-gray-900 mb-1">Contact form</h4>
-                    <p className="text-xs text-gray-500 mb-4 leading-relaxed">
-                        Contact us, to provide any questions or feedback.
-                    </p>
-                    <button className="text-blue-600 text-sm font-semibold hover:underline cursor-pointer mt-auto text-left">
-                        Send us a message
-                    </button>
-                </div>
-            </div>
-        </div>
-    )
-}
+                    <Grid.Cell columnSpan={{ xs: 6, sm: 3, md: 3, lg: 3 }}>
+                        <Box background="bg-surface-secondary" padding="400" borderRadius="200" height="100%">
+                            <BlockStack gap="200">
+                                <Icon source={EmailIcon} tone="subdued" />
+                                <Text variant="headingSm" as="h4">Contact form</Text>
+                                <Text variant="bodyXs" tone="subdued">
+                                    Contact us, to provide any questions or feedback.
+                                </Text>
+                                <Button variant="tertiary" textAlign="left">Send us a message</Button>
+                            </BlockStack>
+                        </Box>
+                    </Grid.Cell>
+                </Grid>
+            </BlockStack>
+        </Card>
+    );
+};
 
 export default SupportChannel;

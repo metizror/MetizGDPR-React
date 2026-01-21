@@ -1,0 +1,31 @@
+
+> client@0.0.0 build
+> vite build
+
+vite v7.3.1 building client environment for production...
+
+/client/src/index.css doesn't exist at build time, it will remain unchanged to be resolved at runtime
+transforming...
+✓ 1132 modules transformed.
+✗ Build failed in 1.79s
+error during build:
+src/components/reports/ReportsGrid.jsx (3:40): "CustomersIcon" is not exported by "node_modules/@shopify/polaris-icons/dist/index.mjs", imported by "src/components/reports/ReportsGrid.jsx".
+file: /home/mspl-cpu-010/html/Meet/Metiz GDPR 1/client/src/components/reports/ReportsGrid.jsx:3:40
+
+1: import React from 'react';
+2: import { Grid, Card, BlockStack, Icon, Text, Button, Box } from '@shopify/polaris';
+3: import { SearchIcon, ChartVerticalIcon, CustomersIcon, IdeaIcon } from '@shopify/polaris-icons';
+                                           ^
+4: 
+5: const ReportsGrid = () => {
+
+    at getRollupError (file:///home/mspl-cpu-010/html/Meet/Metiz%20GDPR%201/client/node_modules/rollup/dist/es/shared/parseAst.js:401:41)
+    at error (file:///home/mspl-cpu-010/html/Meet/Metiz%20GDPR%201/client/node_modules/rollup/dist/es/shared/parseAst.js:397:42)
+    at Module.error (file:///home/mspl-cpu-010/html/Meet/Metiz%20GDPR%201/client/node_modules/rollup/dist/es/shared/node-entry.js:17022:16)
+    at Module.traceVariable (file:///home/mspl-cpu-010/html/Meet/Metiz%20GDPR%201/client/node_modules/rollup/dist/es/shared/node-entry.js:17478:29)
+    at ModuleScope.findVariable (file:///home/mspl-cpu-010/html/Meet/Metiz%20GDPR%201/client/node_modules/rollup/dist/es/shared/node-entry.js:15141:39)
+    at ReturnValueScope.findVariable (file:///home/mspl-cpu-010/html/Meet/Metiz%20GDPR%201/client/node_modules/rollup/dist/es/shared/node-entry.js:5688:38)
+    at FunctionBodyScope.findVariable (file:///home/mspl-cpu-010/html/Meet/Metiz%20GDPR%201/client/node_modules/rollup/dist/es/shared/node-entry.js:5688:38)
+    at Identifier.bind (file:///home/mspl-cpu-010/html/Meet/Metiz%20GDPR%201/client/node_modules/rollup/dist/es/shared/node-entry.js:5462:40)
+    at Property.bind (file:///home/mspl-cpu-010/html/Meet/Metiz%20GDPR%201/client/node_modules/rollup/dist/es/shared/node-entry.js:2829:23)
+    at ObjectExpression.bind (file:///home/mspl-cpu-010/html/Meet/Metiz%20GDPR%201/client/node_modules/rollup/dist/es/shared/node-entry.js:2825:28)

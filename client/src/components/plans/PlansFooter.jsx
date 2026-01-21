@@ -1,14 +1,24 @@
 import React from 'react';
-import { ExternalLink } from 'lucide-react';
+import { InlineStack, Text, Link, BlockStack, Icon, Box } from '@shopify/polaris';
+import { ExternalIcon } from '@shopify/polaris-icons';
 
 const PlansFooter = () => {
     return (
-        <div className="mt-12 mb-8 flex flex-col items-center gap-2">
-            <a href="#" className="flex items-center gap-1.5 text-blue-600 text-[13px] font-bold hover:underline">
-                Learn more in the <ExternalLink size={14} /> Knowledge base
-            </a>
-            <span className="text-[11px] text-gray-400">Version v4.2.0</span>
-        </div>
+        <Box paddingBlock="800">
+            <BlockStack align="center" gap="200">
+                <InlineStack align="center" gap="100">
+                    <Link url="#" external>
+                        Learn more in the Knowledge base
+                    </Link>
+                    <div style={{ width: '16px', height: '16px' }}>
+                        <Icon source={ExternalIcon} tone="brand" />
+                    </div>
+                </InlineStack>
+                <InlineStack align="center">
+                    <Text variant="bodyXs" tone="subdued">Version v4.2.0</Text>
+                </InlineStack>
+            </BlockStack>
+        </Box>
     );
 };
 

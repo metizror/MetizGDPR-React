@@ -1,32 +1,70 @@
-import { ShieldCheck, X } from "lucide-react"
+import React from "react";
+import { Card, Text, BlockStack, InlineStack, Button, Box, Icon } from "@shopify/polaris";
+import { ShieldCheckMarkIcon, XIcon } from "@shopify/polaris-icons";
 
 const GoogleConsentMode = () => {
     return (
-        <div className="bg-white border border-gray-200 rounded-xl p-6 shadow-sm relative overflow-hidden flex flex-col md:flex-row justify-between items-start md:items-center">
-            <button className="absolute top-4 right-4 text-gray-400 hover:text-gray-600">
-                <X size={18} />
-            </button>
-            <div className="max-w-[70%]">
-                <h3 className="text-base font-bold text-gray-900 mb-2">Google Consent Mode v2 ready</h3>
-                <p className="text-sm text-gray-600 mb-4 leading-relaxed">
-                    Follow this guide to ensure your store complies with Google consent mode v2, aligning with Google's latest EU user consent policy.
-                </p>
-                <button className="px-4 py-1.5 border border-gray-300 rounded-lg text-sm font-medium hover:bg-gray-50 transition-colors">
-                    Learn more
-                </button>
-            </div>
-            <div className="hidden md:flex items-center justify-center pr-8">
-                <div className="relative">
-                    <div className="w-16 h-16 bg-blue-50 rounded-full flex items-center justify-center border-4 border-white shadow-lg relative z-10">
-                        <ShieldCheck size={32} className="text-blue-600" />
-                    </div>
-                    <div className="absolute -top-2 -right-2 w-8 h-8 bg-yellow-400 rounded-lg shadow-md flex items-center justify-center z-20">
-                        <span className="text-white text-[10px] font-bold">G</span>
-                    </div>
+        <Card>
+            <div style={{ position: 'relative' }}>
+                <div style={{ position: 'absolute', top: '-8px', right: '-8px' }}>
+                    <Button variant="tertiary" icon={XIcon} onClick={() => { }} />
                 </div>
+                <InlineStack align="space-between" blockAlign="center">
+                    <Box maxWidth="70%">
+                        <BlockStack gap="400">
+                            <BlockStack gap="100">
+                                <Text variant="headingMd" as="h3">Google Consent Mode v2 ready</Text>
+                                <Text variant="bodyMd" tone="subdued">
+                                    Follow this guide to ensure your store complies with Google consent mode v2, aligning with Google's latest EU user consent policy.
+                                </Text>
+                            </BlockStack>
+                            <InlineStack>
+                                <Button>Learn more</Button>
+                            </InlineStack>
+                        </BlockStack>
+                    </Box>
+                    <Box padding="400" display={{ xs: 'none', md: 'block' }}>
+                        <div style={{ position: 'relative', width: '64px', height: '64px' }}>
+                            <Box
+                                background="bg-surface-brand"
+                                borderRadius="full"
+                                width="64px"
+                                height="64px"
+                                display="flex"
+                                alignItems="center"
+                                justifyContent="center"
+                                borderStyle="solid"
+                                borderWidth="020"
+                                borderColor="border-inverse"
+                                shadow="lg"
+                            >
+                                <div style={{ width: '32px' }}>
+                                    <Icon source={ShieldCheckMarkIcon} tone="brand" />
+                                </div>
+                            </Box>
+                            <div style={{
+                                position: 'absolute',
+                                top: '-4px',
+                                right: '-4px',
+                                background: '#FFC400',
+                                borderRadius: '4px',
+                                width: '24px',
+                                height: '24px',
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                color: 'white',
+                                fontWeight: 'bold',
+                                fontSize: '12px'
+                            }}>
+                                G
+                            </div>
+                        </div>
+                    </Box>
+                </InlineStack>
             </div>
-        </div>
-    )
-}
+        </Card>
+    );
+};
 
 export default GoogleConsentMode;
