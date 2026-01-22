@@ -105,8 +105,15 @@ app.get('/', async (req, res, next) => {
 // Serve static files
 app.use(express.static(path.join(__dirname, '../client/dist')));
 
+// Serve static files for ScriptTags
+app.use('/public', express.static(path.join(__dirname, 'public')));
+
+import bannerRoutes from './routes/bannerRoutes.js';
+
 // Routes
 app.use('/api', authRoutes);
+app.use('/api/banner', bannerRoutes);
+
 
 app.get('/api', (req, res) => {
     res.send('Shopify App Backend is running!');

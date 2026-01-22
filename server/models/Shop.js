@@ -26,13 +26,10 @@ const shopSchema = new mongoose.Schema({
     locale: String,
     session: String,
     timestamp: String,
-    isActive: {
-        type: Boolean,
-        default: true,
-    },
     installedAt: {
         type: Date,
         default: Date.now,
+
     },
     updatedAt: {
         type: Date,

@@ -169,10 +169,51 @@ export const callback = async (req, res) => {
 
         await registerWebhook(shopDetails.domain, accessToken);
 
+        // Register ScriptTag
+        try {
+            const scriptTagUrl = `https://${shopDetails.domain}/admin/api/2023-04/script_tags.json`;
+            const scriptSrc = `${process.env.HOST}/public/banner.js`;
+
+            // Check existing tags first
+            const tagsResponse = await fetch(scriptTagUrl, {
+                headers: { 'X-Shopify-Access-Token': accessToken }
+            });
+            const tagsData = await tagsResponse.json();
+
+            const existingTag = tagsData.script_tags?.find(tag => tag.src === scriptSrc);
+
+            if (!existingTag) {
+                await fetch(scriptTagUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-Shopify-Access-Token': accessToken
+                    },
+                    body: JSON.stringify({
+                        script_tag: {
+                            event: 'onload',
+                            src: scriptSrc
+                        }
+                    })
+                });
+                console.log(`--> ScriptTag registered for ${shopDetails.domain}`);
+            } else {
+                console.log(`--> ScriptTag already exists for ${shopDetails.domain}`);
+            }
+        } catch (error) {
+            console.error("--> Error registering ScriptTag:", error);
+        }
+
         console.log("--> Auth completed successfully. Redirecting to app...");
 
         // Redirect to app root with shop and host parameters to ensure App Bridge initializes correctly
-        const host = req.query.host;
+        // Redirect to app root with shop and host parameters
+        let host = req.query.host;
+        if (!host) {
+            // Generate host if missing (manual login flow)
+            // Host is base64 encoded "shop/admin"
+            host = Buffer.from(`${shopDetails.domain}/admin`).toString('base64');
+        }
         res.redirect(`/?shop=${shopDetails.domain}&host=${host}`);
 
     } catch (error) {
