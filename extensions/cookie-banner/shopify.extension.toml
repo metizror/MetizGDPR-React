@@ -1,0 +1,10 @@
+api_version = "2024-10"
+
+[[extensions]]
+name = "Cookie Banner"
+handle = "cookie-banner"
+type = "theme_app_extension"
+
+  [[extensions.targeting]]
+  target = "body"
+  module = "./blocks/banner.liquid"

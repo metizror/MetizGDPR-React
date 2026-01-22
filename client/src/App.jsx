@@ -10,6 +10,8 @@ import './App.css';
 
 import { NavMenu } from '@shopify/app-bridge-react';
 
+import { ShopContext } from './contexts/ShopContext';
+
 function App() {
   const searchParams = new URLSearchParams(window.location.search);
   const shop = searchParams.get("shop");
@@ -19,23 +21,25 @@ function App() {
   }
 
   return (
-    <Router>
-      <NavMenu>
-        <a href="/" rel="home">Pandectes GDPR</a>
-        <a href="/settings">Settings</a>
-        <a href="/reports">Reports</a>
-        <a href="/plans">Plans</a>
-        <a href="/contact">Contact</a>
-      </NavMenu>
-      <Routes>
-        <Route path="/" element={<Dashboard />} />
-        <Route path="/plans" element={<Plans />} />
-        <Route path="/reports" element={<Reports />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/settings" element={<Settings />} />
-        <Route path="/settings/banner" element={<Banner />} />
-      </Routes>
-    </Router>
+    <ShopContext.Provider value={{ shop }}>
+      <Router>
+        <NavMenu>
+          <a href="/" rel="home">Pandectes GDPR</a>
+          <a href="/settings">Settings</a>
+          <a href="/reports">Reports</a>
+          <a href="/plans">Plans</a>
+          <a href="/contact">Contact</a>
+        </NavMenu>
+        <Routes>
+          <Route path="/" element={<Dashboard />} />
+          <Route path="/plans" element={<Plans />} />
+          <Route path="/reports" element={<Reports />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/settings" element={<Settings />} />
+          <Route path="/settings/banner" element={<Banner />} />
+        </Routes>
+      </Router>
+    </ShopContext.Provider>
   );
 }
 
