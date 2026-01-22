@@ -149,6 +149,7 @@ export const callback = async (req, res) => {
             name: shopDetails.name,
             planName: shopDetails.plan_name,
             updatedAt: new Date(),
+            isActive: true, // Reactivate if it was soft deleted
             // Store available query params immediately
             hmac: req.query.hmac,
             timestamp: req.query.timestamp,
@@ -156,18 +157,15 @@ export const callback = async (req, res) => {
             host: req.query.host, // Note: Host might technically be missing in query if not passed through, but often is present in callback or state
         };
 
-        // **Check if Store Exists**
-        let existingStore = await Shop.findOne({ shop: shopDetails.domain });
-
-        if (existingStore) {
-            console.log(`--> Updating existing shop: ${shopDetails.domain}`);
-            Object.assign(existingStore, shopDataObj);
-            await existingStore.save();
-        } else {
-            console.log(`--> Creating new shop: ${shopDetails.domain}`);
-            existingStore = new Shop(shopDataObj);
-            await existingStore.save();
-        }
+        // **Check if Store Exists / Update**
+        // Using findOneAndUpdate with upsert to handle both creation and update atomically
+        // ensuring isActive is explicitly set to true.
+        await Shop.findOneAndUpdate(
+            { shop: shopDetails.domain },
+            shopDataObj,
+            { upsert: true, new: true, setDefaultsOnInsert: true }
+        );
+        console.log(`--> Shop data saved/updated for ${shopDetails.domain}`);
 
         await registerWebhook(shopDetails.domain, accessToken);
 

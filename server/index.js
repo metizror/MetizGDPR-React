@@ -65,8 +65,8 @@ app.get('/', async (req, res, next) => {
         try {
             const existingShop = await Shop.findOne({ shop });
 
-            // IF SHOP IS NOT IN DATABASE OR HAS NO ACCESS TOKEN, WE MUST AUTHENTICATE
-            if (!existingShop || !existingShop.accessToken) {
+            // IF SHOP IS NOT IN DATABASE OR HAS NO ACCESS TOKEN OR IS INACTIVE
+            if (!existingShop || !existingShop.accessToken || existingShop.isActive === false) {
                 console.log(`--> Shop ${shop} incomplete or missing in DB. Redirecting to Auth flow...`);
                 return redirectToAuth(req, res, shop);
             }
@@ -85,6 +85,7 @@ app.get('/', async (req, res, next) => {
                     locale,
                     session,
                     timestamp,
+                    isActive: true, // Ensure shop is marked active if it's loading successfully
                     updatedAt: new Date()
                 }
             );

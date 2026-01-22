@@ -37,7 +37,7 @@ export const appUninstalled = async (req, res) => {
 
         console.log(`--> Webhook: App Uninstalled for ${shop}`);
 
-        await Shop.findOneAndDelete({ shop });
+        await Shop.findOneAndUpdate({ shop }, { isActive: false });
 
         console.log(`Shop ${shop} removed from database.`);
         res.status(200).send('OK');
