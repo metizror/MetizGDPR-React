@@ -1,5 +1,5 @@
 ---
-description: Instructions for creating shopify public app using react and node 
+description: Instructions for creating shopify public app using react and node
 ---
 
 # Shopify Public App Instructions
@@ -64,13 +64,3 @@ Example (based on current setup):
 - Readable, maintainable code
 - No unnecessary abstractions
 - No dead files or placeholder junk
-
-## What to Avoid
-- Shopify CLI templates
-- Overengineering
-- Mixing frontend and backend responsibilities
-- Ignoring Shopify best practices
-
-## Assumption Rule
-If something is unclear, **assume standard Shopify public app behavior** and proceed.
-

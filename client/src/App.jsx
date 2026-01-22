@@ -1,14 +1,23 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
 import Plans from './pages/Plans';
 import Reports from './pages/Reports';
 import Contact from './pages/Contact';
 import Settings from './pages/Settings';
+import Banner from './pages/settings/Banner';
 import './App.css';
 
 import { NavMenu } from '@shopify/app-bridge-react';
 
 function App() {
+  const searchParams = new URLSearchParams(window.location.search);
+  const shop = searchParams.get("shop");
+
+  if (!shop) {
+    return <Login />;
+  }
+
   return (
     <Router>
       <NavMenu>
@@ -24,6 +33,7 @@ function App() {
         <Route path="/reports" element={<Reports />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/settings" element={<Settings />} />
+        <Route path="/settings/banner" element={<Banner />} />
       </Routes>
     </Router>
   );

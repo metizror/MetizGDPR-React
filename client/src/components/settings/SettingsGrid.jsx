@@ -149,11 +149,9 @@ const SettingsGrid = () => {
                                 </div>
                                 <BlockStack gap="100">
                                     <InlineStack gap="200" align="start">
-                                        <div style={{ color: 'var(--p-color-text-brand)' }}>
-                                            <Text variant="headingSm" as="h3" tone='magic-subdued'>
-                                                {item.title}
-                                            </Text>
-                                        </div>
+                                        <Text variant="headingSm" as="h3" tone='magic-subdued'>
+                                            {item.title}
+                                        </Text>
                                         {item.badge && (
                                             <Badge tone="purple">
                                                 <InlineStack gap="100" blockAlign="center">
